@@ -1,0 +1,97 @@
+<ion-view view-title="SCM_HOME" ng-controller="ScmUser_HomeCtrl">
+	<ion-content class="padding2">
+		<!-- <!doctype html> -->
+		<html>
+			<head>
+			<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
+		 
+				<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+				<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+				<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1.0, minimum-scale=1" />
+				<!-- <title>ERPiaSCM</title> -->
+
+				<!-- 공통요소 -->
+				<link rel="stylesheet" type="text/css" id="" href="./css/common_scm.css" media="all" />
+			</head>
+			<style type="text/css">
+				.hand{cursor:pointer;}
+			</style>
+			<body>
+				<!-- <br><br><br><br>광고영역<br><br><br><br> -->
+				<div>
+					<img src="./img/banner_add1.jpg" width="100%">
+				</div>
+
+				<div style="width:100%; text-align:right; margin-top:20px">
+					<span style="display:inline-blank; margin-top:-10px;">최근 조회 시간 :2015-08-04 18:00:00</span>
+					
+					<span>
+						<button class="refresh" ng-click="ScmBaseData()"><img src="./img/icon_toggle.png" width="30px"></button>
+					</span>
+				</div>
+
+				<div class="con_hyun" style='width:90%; margin:auto; padding-bottom:5%'>
+					<table ng-submit="ScmBaseData()">
+						<tr>
+							<!-- 발주 조회 -->
+							<td class="psm_01">
+								<table>
+									<tr>
+										<td colspan="4" class="psm_tdov">
+											<a class="hand">발주 조회&nbsp;<font id="totBalju" ng-bind-html="B_TOT"></font>건</a>
+											<!-- <span><button class="refresh" ng-click="ScmBaseData()">새로고침 </button></span> -->
+											 
+										</td>
+									</tr>
+									<tr>
+										<!-- <span class="hand">업체코드</span>  -->
+										<!-- <span class="baljuNew" ng-bind-html="Admin_Code"></span> -->
+										<td><a class="hand">신규발주<br /><font id="baljuNew" ng-bind-html="B_NewBalju"></font>건</a></td>
+										<td><a class="hand">발주확인<br /><font id="baljuConfirm" ng-bind-html="B_BalJuConfirm"></font>건</a></td>
+										<td><a class="hand">출고확인<br /><font id="baljuChulgo" ng-bind-html="B_ChulgoConfirm"></font>건</a></td>
+										<td><a class="hand">매입확정<br /><font id="baljuMeaip" ng-bind-html="B_MeaipComplete"></font>건</a></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr><td height=5></td></tr>
+						<tr>
+							<!-- 직배송 조회 -->
+							<td class="psm_02">
+								<table>
+									<tr>
+										<td colspan="4" class="psm_tdov"><a class="hand">직배송 조회&nbsp;<font id="totDirect" ng-bind-html="J_TOT"></font>건</a></td>
+									</tr>
+									<tr>
+										<td><a class="hand">신규발주<br /><font id="directNew" ng-bind-html="J_NewBalju"></font>건</a></td>
+										<td><a class="hand">발주확인<br /><font id="directConfirm" ng-bind-html="J_BalJuConfirm"></font>건</a></td>
+										<td><a class="hand">출고확인<br /><font id="directChulgo" ng-bind-html="J_ChulgoConfirm"></font>건</a></td>
+										<td><a class="hand">매입확정<br /><font id="directMeaip" ng-bind-html="J_MeaipComplete"></font>건</a></td>
+									</tr>
+								</table>
+							</td>  
+						</tr>
+						<tr><td height=5></td></tr>
+						<tr>
+							<!-- 취소/반품/교환 현황 -->
+							<td class="psm_03">
+								<table>
+									<tr>
+										<td colspan="3" class="psm_tdov"><a class="hand">취소/반품/교환 현황&nbsp;<font id="totCRM" ng-bind-html="C_TOT"></font>건</a></td>
+									</tr>
+									<tr>
+										<td><a class="hand">취소관리<br /><font id="crmCancel" ng-bind-html="C_CancelCnt"></font>건</a></td>
+										<td><a class="hand">반품관리<br /><font id="crmTrade" ng-bind-html="C_ReturnCnt"></font>건</a></td>
+										<td><a class="hand">교환관리<br /><font id="crmReturn" ng-bind-html="C_ExchangeCnt"></font>0건</a></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>						
+				</div>
+
+				<!-- <iframe src="chart/pieWithLegend.html"   frameborder=0 marginwidth=0 marginheight=0 scrolling=no align="left" ng-style="myStyle"></iframe> -->
+			</body>
+		</html>
+	</ion-content>
+</ion-view>

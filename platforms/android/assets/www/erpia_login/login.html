@@ -1,0 +1,61 @@
+<ion-modal-view class="psm_login_body">
+	<ion-header-bar class="bar-dark">
+		<h1 class="title ">Login</h1>
+
+		<div class="buttons">
+			<button class="button button-clear" ng-click="closeLogin()">
+				Close
+			</button>
+		</div>
+	</ion-header-bar>
+
+	<ion-content>
+		<form ng-submit="doLogin()">
+
+			<div>
+				<div class="ss"> 
+					<div class="psm_login_logo"><img src="./img/logo.png" class="logo-image"></div>
+				</div>
+				<label class="item item-input c" style="border:0px; padding-right:20px"> 
+					<span class="input-label" style="color:#6f747a;">업체코드</span>
+					<input type="text" ng-model="loginData.Admin_Code" style="color:#fff; background:#22242c; padding:0 10px">
+				</label>
+				<label class="item item-input c" style="border:0px; padding-right:20px"> 
+					<span class="input-label" style="color:#6f747a;">아이디</span>
+					<input type="text" ng-model="loginData.UserId" style="color:#fff; background:#22242c; padding:0 10px">
+				</label> <!-- #22242c // #6f747a-->
+				<label class="item item-input c" style="border:0px; padding-right:20px"> 
+					<span class="input-label" style="color:#6f747a;">비밀번호</span>
+					<input type="password" ng-model="loginData.Pwd" style="color:#fff; background:#22242c; padding:0 10px">
+				</label>
+ 
+				<div>
+			    	<label class="checkbox c"> 
+			    		<span class="input-label" style="color:#6f747a;">SCM USER</span>
+						<input type="checkbox" ng-model="loginData.SCM_Use_YN" style="color:#fff; background:#22242c">
+					</label>
+
+					<!-- <label class="checkbox c" style="border:0px"> <span class="input-label" style="color:#fff;">AUTO LOGIN</span>
+						<input type="checkbox" ng-model="loginData.Auto_Login" style="color:#fff;">
+					</label> -->
+			    </div>
+
+				<!-- <div class="item item-toggle c">
+			    	<span style="color:#fff;">자동로그인</span>
+			    <label class="toggle toggle-assertive">
+					<input type="checkbox">
+						<div class="track">
+							<div class="handle"></div>
+						</div>
+			     </label>
+				</div> -->
+
+				<label class="item c" style="border:0px">
+					<button class="button button-block button-assertive" type="submit">
+						Log in
+					</button> 
+				</label>
+			</div>
+		</form>
+	</ion-content>
+</ion-modal-view>

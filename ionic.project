@@ -1,0 +1,10 @@
+{
+  "name": "myAppFrame",
+  "app_id": "b94db7cd",
+  "proxies":[
+    {
+      "path":"/include",
+      "proxyUrl":"https://erpia.net/include"
+    }
+  ]
+}
