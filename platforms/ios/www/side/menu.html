@@ -1,0 +1,295 @@
+<ion-side-menus enable-menu-with-back-views="true">
+	<ion-side-menu-content>
+		<ion-nav-bar class="bar-dark">
+			<ion-nav-back-button></ion-nav-back-button>
+
+			<ion-nav-buttons side="left">
+				<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+			</ion-nav-buttons>
+		</ion-nav-bar>
+		<ion-nav-view name="menuContent"></ion-nav-view>
+	</ion-side-menu-content>
+
+	<ion-side-menu side="left">
+
+		<div class="bar-header psm_left_top">
+			<table border="0" cellpadding="0" cellspacing="0" class="psm_left_topta">
+				<tr>
+					<td rowspan="2" class="psm_left_toptd1"><img src="./img/erpia_logo.png" class="psm_left_img1"></td>
+					<td class="psm_left_toptd2" style="width:40%">
+						<a  menu-close ng-click="login()">  
+							<div class="psm_left_mediv" ng-bind-html="loginHTML" style="font-size:20px; cursor:pointer"> 
+								<!-- 로그인 -->
+							</div>
+						</a>
+					</td>
+					<td menu-close rowspan="2" class="psm_left_toptd3" style="text-align:right"><img src="./img/icon_close.png" class="psm_left_img3"></td>
+				</tr>
+				<tr>
+					<td class="psm_left_toptd4"></td>
+				</tr>
+			</table>
+		</div>
+
+		<ion-content class="naviList">
+			
+			<div ng-switch="loginState">
+				<div name = "main_side" class="button-bar" ng-switch-when="R">
+					<a class="button button-light" menu-close href="#/app/main"> <img src="./img/icon_home1.png" class="psm_left_img2">
+						<div class="psm_left_mediv">
+							HOME(R)
+						</div> 
+					</a>
+					<a class="button button-light" menu-close href="#/app/introduce"> <img src="./img/icon_erpia.png" class="psm_left_img2">
+						<div class="psm_left_mediv">
+							ERPia 소개
+						</div> 
+					</a> 
+					<a class="button button-light" menu-close href="#/app/servicelist"> <img src="./img/icon_buga.png" class="psm_left_img2">
+						<div class="psm_left_mediv">
+							부가서비스
+						</div> 
+					</a>
+				</div>
+
+				<div name = "main_side" class="button-bar" ng-switch-when="R">
+					<a class="button button-light" menu-close href="#/app/cs"> <img src="./img/icon_ct.png" class="psm_left_img4">
+						<div class="psm_left_mediv">
+							상담하기
+						</div> 
+					</a>
+					<a class="button button-light" menu-close href="#/app/push"> <img src="./img/icon_push.png" class="psm_left_img4">
+						<div class="psm_left_mediv">
+							알림
+						</div>
+					</a>
+				</div>
+
+				<div ng-switch-when="R">
+					<img src="./img/banneradd.jpg" width="100%">
+				</div>
+			</div>
+
+			<div ng-switch="loginState">
+				<div name = "scm_side" class="button-bar" ng-switch-when="S">
+					<a class="button button-light" menu-close href="#/app/scmhome"> <img src="./img/icon_ct.png" class="psm_left_img2">
+						<div class="psm_left_mediv">
+							HOME(S)
+						</div> 
+					</a>
+					<a class="button button-light" menu-close href="#/app/tab/dash"> <img src="./img/icon_board.png" class="psm_left_img2">
+						<div class="psm_left_mediv">
+							ERPia 소개
+						</div> 
+					</a> 
+					<a class="button button-light" menu-close href="#/app/playlists"> <img src="./img/icon_push.png" class="psm_left_img2">
+						<div class="psm_left_mediv">
+							부가서비스
+						</div> 
+					</a>
+				</div>
+
+				<div name = "scm_side" class="button-bar" ng-switch-when="S">
+					<a class="button button-light" menu-close href="#/app/playlists"> <img src="./img/icon_ct.png" class="psm_left_img4">
+						<div class="psm_left_mediv">
+							무료컨설팅
+						</div> 
+					</a>
+					<a class="button button-light" menu-close href="#/app/cs"> <img src="./img/icon_board.png" class="psm_left_img4">
+						<div class="psm_left_mediv">
+							회원가입
+						</div> 
+					</a> 
+					<a class="button button-light" menu-close href="#/app/push"> <img src="./img/icon_push.png" class="psm_left_img4">
+						<div class="psm_left_mediv">
+							알림
+						</div>
+					</a>
+				</div>
+
+				<div class="list" ng-switch-when="S">
+					<div class="naviGubun">
+						ERPia 거래명세표
+					</div>
+
+					<a class="item item-icon-left navi-item" href="#"> 
+						<i class="icon"> <img src="./img/icon_deal.png" class="psm_left_icon"> 
+							<span class="navi-item-leftText">거래명세표<br> 미수신건</span> 
+							<span class="navi-item-rightText" style="color:#ff0000;">10 건</span>
+						</i> 
+					</a>
+				</div>
+
+				<div class="list" ng-switch-when="S">
+					<div class="naviGubun">
+						SCM 계정정보
+					</div>
+
+					<a class="item item-icon-left navi-item" href="#"> 
+						<i class="icon"> <img src="./img/icon_layers.png" class="psm_left_icon"> 
+							<span class="navi-item-leftText">업체코드</span> 
+							<span class="navi-item-rightText" ng-bind-html="GerName"></span>
+						</i> 
+					</a>
+
+					<a class="item item-icon-left navi-item" href="#"> 
+						<i class="icon"> <img src="./img/icon_compose.png" class="psm_left_icon"> 
+							<span class="navi-item-leftText">아이디</span> 
+							<span class="navi-item-rightText" ng-bind-html="G_id"></span> 
+						</i> 
+					</a>
+				</div>
+			</div>
+
+			<div ng-switch="loginState">
+				<div name = "erpia_side" class="button-bar" ng-switch-when="E">
+					<a class="button button-light" menu-close href="#/app/slidingtab"> <img src="./img/icon_ct.png" class="psm_left_img2">
+						<div class="psm_left_mediv">
+							HOME(E)
+						</div> 
+					</a>
+					<a class="button button-light" menu-close href="#/app/boardSelect"> <img src="./img/icon_board.png" class="psm_left_img2">
+						<div class="psm_left_mediv">
+							게시판
+						</div> 
+					</a> 
+					<a class="button button-light" menu-close href="#/app/push"> <img src="./img/icon_push.png" class="psm_left_img2">
+						<div class="psm_left_mediv">
+							알림
+						</div> 
+					</a>
+				</div>
+
+				<div class="list" ng-switch-when="E">
+					<div class="naviGubun">
+						ERPia 거래명세표
+					</div>
+
+					<a class="item item-icon-left navi-item" href="#"> 
+						<i class="icon"> <img src="./img/icon_deal.png" class="psm_left_icon"> 
+							<span class="navi-item-leftText">거래명세표<br> 미수신건</span> 
+							<span class="navi-item-rightText" style="color:#ff0000;" ng-bind-html="CNT_Tax_No_Read"></span>
+						</i> 
+					</a>
+				</div>
+
+				<div class="list" ng-switch-when="E">
+					<div class="naviGubun">
+						ERPia 계정정보
+					</div>
+
+					<a class="item item-icon-left navi-item" href="#"> 
+						<i class="icon"> <img src="./img/icon_layers.png" class="psm_left_icon"> 
+							<span class="navi-item-leftText">업체코드</span> 
+							<span class="navi-item-rightText" ng-bind-html="Com_Name"></span>
+						</i> 
+					</a>
+
+					<a class="item item-icon-left navi-item" href="#"> 
+						<i class="icon"> <img src="./img/icon_compose.png" class="psm_left_icon"> 
+							<span class="navi-item-leftText">아이디</span> 
+							<span class="navi-item-rightText" ng-bind-html="UserId"></span> 
+						</i> 
+					</a>
+
+					<a class="item item-icon-left navi-item" href="#"> 
+						<i class="icon"> <img src="./img/icon_calendar.png" class="psm_left_icon"> 
+							<span class="navi-item-leftText">월 관리비<br>결제일</span> 
+							<span class="navi-item-rightText" ng-bind-html="management_day"></span> 
+						</i> 
+					</a>
+
+					<a class="item item-icon-left navi-item" href="#"> 
+						<i class="icon"> <img src="./img/icon_phone.png" class="psm_left_icon"> 
+							<span class="navi-item-leftText">월 관리비 </span> 
+							<span class="navi-item-rightText" ng-bind-html="management_bill"></span> 
+						</i> 
+					</a>
+
+					<a class="item item-icon-left navi-item" href="#"> 
+						<i class="icon"> <img src="./img/icon_mail.png" class="psm_left_icon"> 
+							<span class="navi-item-leftText">사용 SMS </span> 
+							<span class="navi-item-rightText" ng-bind-html="sms"></span> 
+						</i> 
+					</a>
+
+					<a class="item item-icon-left navi-item" href="#"> 
+						<i class="icon"> <img src="./img/icon_document.png" class="psm_left_icon"> 
+							<span class="navi-item-leftText">사용<br>세금계산서 </span> 
+							<span class="navi-item-rightText" ng-bind-html="tax"></span> 
+						</i> 
+					</a>
+
+					<a class="item item-icon-left navi-item" href="#"> 
+						<i class="icon"> <img src="./img/icon_star.png" class="psm_left_icon"> 
+							<span class="navi-item-leftText">가용<br>E-머니 </span> 
+							<span class="navi-item-rightText" ng-bind-html="e_money"></span> 
+						</i> 
+					</a>
+
+					<a class="item item-icon-left navi-item" href="#"> 
+						<i class="icon"> <img src="./img/icon_denied.png" class="psm_left_icon"> 
+							<span class="navi-item-leftText">가용 누구나<br>(무료) 포인트 </span> 
+							<span class="navi-item-rightText" ng-bind-html="every"></span> 
+						</i> 
+					</a>
+
+				</div>
+
+				<div class="list" ng-switch-when="E">
+					<div class="naviGubun">
+						ERPia 이용정보
+					</div>
+
+					<a class="item item-icon-left navi-item" href="#"> 
+						<i class="icon"> <img src="./img/icon_ribbon.png" class="psm_left_icon"> 
+							<span class="navi-item-leftText">사용 패키지</span> 
+							<span class="navi-item-rightText" ng-bind-html="package"></span> 
+						</i> 
+					</a>
+
+					<a class="item item-icon-left navi-item" href="#"> 
+						<i class="icon"> <img src="./img/icon_user.png" class="psm_left_icon"> 
+							<span class="navi-item-leftText">유저수</span> 
+							<span class="navi-item-rightText" ng-bind-html="cnt_user"</span> 
+						</i> 
+					</a>
+
+					<a class="item item-icon-left navi-item" href="#"> 
+						<i class="icon"> <img src="./img/icon_pc.png" class="psm_left_icon"> 
+							<span class="navi-item-leftText">사이트 수</span> 
+							<span class="navi-item-rightText" ng-bind-html="cnt_site"</span> 
+						</i> 
+					</a>
+
+					<a class="item item-icon-left navi-item" href="#"> 
+						<i class="icon"> <img src="./img/icon_book.png" class="psm_left_icon"> 
+							<span class="navi-item-leftText">통합계좌<br>(계좌수)</span> 
+							<span class="navi-item-rightText" ng-bind-html="cnt_account"></span>
+						</i> 
+					</a>
+				</div>
+			</div>
+
+			<div class="button-bar">
+				<a class="button button-light" menu-close ng-click="login()"> <img src="./img/icon-onoff.png" class="psm_left_img2">
+					<div class="psm_left_mediv" ng-bind-html="loginHTML">
+						
+					</div> 
+				</a>
+				<a class="button button-light" href="http://erpia.net" target="blank"> <img src="./img/icon_home.png" class="psm_left_img2">
+					<div class="psm_left_mediv">
+						홈페이지
+					</div> 
+				</a>
+
+				<!-- <a href="http://erpia.net" target="blank">
+					<img src="./img/erpia_blog.jpg" width="100%">
+				</a> 	 -->
+
+
+			</div>
+		</ion-content>
+	</ion-side-menu>
+</ion-side-menus>
+ 

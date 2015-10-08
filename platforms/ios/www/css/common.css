@@ -1,0 +1,160 @@
+/*.naviBack {
+	background: #ffffff;
+}
+
+.naviBar {
+	background: #222d32;
+	border-color: transparent;
+}
+
+.naviTitle {
+
+	width: 100%;
+	height: 100%;
+	color: #ffffff;
+	background: #222d32;
+	padding-top: 0.5em;
+	font-size: 1.0em;
+	font-weight: bold;
+	text-align: center;
+}
+
+
+
+.naviButton {
+	background: #000;
+	color: #fff;
+	border-color: transparent;
+}
+
+.naviButton:active {
+	background: #555;
+	color: #000;
+	border-color: transparent;
+}*/
+   
+.psm_left_top {
+	color: #ffffff;
+	text-align: left;
+	padding: 1.5em 0 1.5em 1.2em;
+	background: #f09700;
+}
+ 
+
+.psm_left_toptd1 {
+	width: 6.5em;
+	font-size: 1em;
+	font-weight: bold;
+	text-align: left;
+	vertical-align: middle;
+}
+.psm_left_toptd2 {
+	font-size: 0.9em;
+	font-weight: bold;
+	text-align: left;
+	vertical-align: middle;
+}
+.psm_left_toptd3 {
+	vertical-align: middle;
+	text-align: right;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+.psm_left_toptd4 {
+	font-size: 0.8em;
+	vertical-align: middle;
+}
+
+
+.psm_left_img1 {
+	width: 80px;
+}
+.psm_left_img2 {
+	margin-top: 0.5em;
+	width: 3.0em;
+	margin-bottom:  -1em;
+}
+.psm_left_img3 {
+	width: 2.7em;
+}
+.psm_left_img4 {
+	margin-top: 0.5em;
+	width: 3.0em;
+	margin-bottom:  -1em;
+}   
+  
+
+.psm_left_mediv {
+	font-size: 0.85em;
+}
+
+.psm_left_icon {
+	width: 1.3em;
+}
+
+.naviList {
+	margin-top: 5.8em;
+}
+
+
+
+
+.navi-item{
+	height: 4.5em;
+}
+
+.navi-item-leftText{
+	width:6em;
+	margin-left:  1.0em;
+	font-size: 0.4em;
+}
+
+.navi-item-rightText{
+	width:6em;
+	margin-left:  1.0em;
+	font-size: 0.4em;
+}
+
+.naviGubun {
+	height: 3.0em;
+	font-size: 0.9em;
+	padding-top: 1em;
+	padding-left: 1.5em;
+	color: #ffffff;
+	background: #76839d;
+	clear: both;
+}
+
+
+
+
+.psm_login_body {background:url('../img/bg_dot.png');}
+.psm_login_all {width:100%; height:100%; font-family:NanumGothic, "돋움", Dotum; color:#555555; font-size: 0.9em; text-align:center;}
+.psm_login_logo {position: absolute;top:0px; left:50%; margin-left:-180px; }
+.psm_login_inp {position: absolute;top:220px; left:50%; width:360px; margin-left:-180px; text-align:left;}
+.psm_login_title {padding-left:60px; padding-top:15px; color:#6f747a;}
+.psm_login_intex {padding-left:60px; padding-top:5px;}
+.psm_login_intex2 {padding-left:60px; padding-top:15px; padding-bottom:40px;}
+.psm_login_auto {padding-left:60px; height:30px; padding-top:15px; padding-bottom:15px; color:#6f747a; vertical-align:top;}
+.psm_login_autx {position: relative; top:-7px; color:#b6b9bd;}
+
+.psm_input {width:240px; height:35px; text-align:center; background:#22242c; border:0px; color:#b6b9bd; font-size: 1.3em;}
+.psm_checkbox {width:25px; height:25px;}
+.psm_login_bt {width:240px; height:35px; text-align:center; background:#e04a32; border:0px; color:#87220c; font-weight:bold; font-size: 1.1em; cursor:pointer;}
+.psm_label {cursor:pointer;}
+
+
+.ss{
+	height: 20em;
+}
+
+.logo-image{
+	width: 25em;
+}
+.c{
+	background:url('../img/bg_dot.png');
+}
+.iframe-wrapper iframe {
+   width: 100%;
+   height: 100%;
+ }
