@@ -1,0 +1,337 @@
+<ion-view view-title="MY PAGE" ng-controller="IndexCtrl">
+	<ion-content scroll="false">
+		<tab-slide-box>
+			<div class="tsb-icons">
+				<div class="tsb-ic-wrp">
+					<ion-scroll direction="x" class="tsb-hscroll">
+						<a href="javascript:;" class="{{tab.icon}}" ng-repeat="tab in tabs" on-finish-render="test()">{{tab.text}}</a>
+					</ion-scroll>
+				</div>
+			</div>
+
+			<ion-slide-box does-continue="true" show-pager="false" on-slide-changed="slideHasChanged($index)">
+				<ion-slide>
+					<ion-content  overflow-scroll="true">
+					<p ng-bind-html="login_alert"></p>
+						<div style="height:100%">
+							<!-- <iframe src="#/erpia_erpiahome/erpiahome" frameborder=0 marginwidth=0 marginheight=0 scrolling=no align="left" ng-style="myStyle"></iframe> -->
+							<!--  <iframe src="http://www.erpia.net/psm/02/html/dashboard_top.asp?gu=2&admin_code=YGNEXT#" frameborder=0 marginwidth=0 marginheight=0 scrolling=no align="left" ng-style="myStyle" height="200px"></iframe> -->
+							<!-- <img src="./img/banner_event1.jpg" width="100%"> -->
+							<!-- 컨텐츠 상단 (정보)-->
+							<link href="./css/bootstrap.css" rel="stylesheet" type="text/css" />
+							<link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+							<link href="./css/AdminLTE.css" rel="stylesheet" type="text/css" />
+
+							<div class="row" style="letter-spacing:-1px;">
+
+								<!-- 사용만료일 -->
+								<div class=" col-xs-psm3">
+									<div class="info-box bg-yellow">
+										<span class="info-box-icon"><i class="ion ion-ios-calendar-outline"></i></span>
+										<div class="info-box-content">
+											<span class="info-box-text">사용만료일</span>
+											<span class="info-box-number" ng-bind-html="G_Expire_Date">2015.08.31</span>
+											<div class="progress">
+												<div class="progress-bar" style="width: 30%"></div>
+											</div>
+											<span class="progress-description">31일 중 11일 사용.</span>
+										</div><!-- /.info-box-content -->
+									</div><!-- /.info-box -->
+								</div>
+
+								<!-- 남은기간 -->
+								<div class=" col-xs-psm3">
+									<div class="info-box bg-aqua">
+										<span class="info-box-icon"><i class="ion ion-ios-clock-outline"></i></span>
+										<div class="info-box-content">
+											<span class="info-box-text">남은기간(일)</span>
+											<span class="info-box-number" ng-bind-html="G_Expire_Days">20일</span>
+											<div class="progress">
+												<div class="progress-bar" style="width: 30%"></div>
+											</div>
+											<span class="progress-description">만료일 까지 20일 남음.</span>
+										</div><!-- /.info-box-content -->
+									</div><!-- /.info-box -->
+								</div>
+
+								<!-- 계산서 미수신건 -->
+								<div class=" col-xs-psm3">
+									<div class="info-box bg-red">
+										<span class="info-box-icon"><i class="ion ion-ios-paper-outline"></i></span>
+										<div class="info-box-content">
+											<span class="info-box-text">계산서 미수신건</span>
+											<span class="info-box-number" ng-bind-html="CNT_Tax_No_Read">20개</span>
+											<div class="progress">
+												<div class="progress-bar" style="width: 80%;"></div>
+											</div>
+											<span class="progress-description">계산서 100중 80개 처리</span>
+										</div><!-- /.info-box-content -->
+									</div><!-- /.info-box -->
+								</div>
+
+							</div>
+							<!-- // 컨텐츠 상단 (정보)-->
+
+							<section class="content-header">
+								<h4 style="font-weight:bold;">미처리 조회</h4>
+								<ol class="breadcrumb"></ol>
+							</section>
+
+							<!-- 컨텐츠 상단 (미처리 조회)-->
+							<div class="row" style="letter-spacing:-1px;">
+
+								<!-- 신규주문 -->
+								<div class="col-xs-psm">
+									<div style="text-align:center;"><img src="./img/icon_sin.png" style="max-width:120px; width:100%;"></div>
+									<div class="psm-box">
+										<div class="inner" style="text-align:center;">
+											<p style="margin:10px 0 0 0; word-break:keep-all">신규 주문</p>
+											<h1 style="margin:0 0 10px 0;" ng-bind-html='E_NewOrder'></h1>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-xs-psm2" style="padding-top:40px;"><img src="./img/img_hwa.png" style="max-width:50px; min-width:10px; width:100%;"></div>
+
+								<div class="col-xs-psm">
+									<div style="text-align:center;"><img src="./img/icon_mul.png" style="max-width:120px; width:100%;"></div>
+									<div class="psm-box">
+										<div class="inner" style="text-align:center;">
+											<p style="margin:10px 0 0 0; word-break:keep-all">물류 처리</p>
+											<h1 style="margin:0 0 10px 0;" ng-bind-html='E_BsComplete'></h1>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-xs-psm2" style="padding-top:40px;"><img src="./img/img_hwa.png" style="max-width:50px; min-width:10px; width:100%;"></div>
+
+								<div class="col-xs-psm">
+									<div style="text-align:center;"><img src="./img/icon_songin.png" style="max-width:120px; width:100%;"></div>
+									<div class="psm-box">
+										<div class="inner" style="text-align:center;">
+											<p style="margin:10px 0 0 0; word-break:keep-all">송장 입력</p>
+											<h1 style="margin:0 0 10px 0;" ng-bind-html='E_InputMno'></h1>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-xs-psm2" style="padding-top:40px;"><img src="./img/img_hwa.png" style="max-width:50px; min-width:10px; width:100%;"></div>
+
+								<div class="col-xs-psm">
+									<div style="text-align:center;"><img src="./img/icon_bei.png" style="max-width:120px; width:100%;"></div>
+									<div class="psm-box">
+										<div class="inner" style="text-align:center;">
+											<p style="margin:10px 0 0 0; word-break:keep-all">출고 처리</p>
+											<h1 style="margin:0 0 10px 0;" ng-bind-html='E_CgComplete'></h1>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-xs-psm2" style="padding-top:40px;"><img src="./img/img_hwa.png" style="max-width:50px; min-width:10px; width:100%;"></div>
+
+								<div class="col-xs-psm">
+									<div style="text-align:center;"><img src="./img/icon_songout.png" style="max-width:120px; width:100%;"></div>
+									<div class="psm-box">
+										<div class="inner" style="text-align:center;">
+											<p style="margin:10px 0 0 0; word-break:keep-all">송장 전송</p>
+											<h1 style="margin:0 0 10px 0;" ng-bind-html='E_RegistMno'></h1>
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+							<div>
+								<img src="./img/banner_event1.jpg" width="100%">
+							</div>
+						</div>
+						<!-- <div style="position:absolute;"><img src="./img/banner_event1.jpg" width="100%"></div> -->
+
+					</ion-content>
+				</ion-slide>
+
+				<ion-slide>
+					<ion-content overflow-scroll="true">
+					<p ng-bind-html="login_alert"></p>
+						<!-- <div style="height: 100%;"> -->
+							<iframe ng-src="{{chart_url}}" ng-style="myStyle"></iframe>
+
+							<!-- <div class="video-container">
+                    			<iframe src="https://www.youtube.com/embed/wyVM1evRxNw" frameborder="0" width="560" height="315"></iframe>
+                			</div> -->
+
+                			<!-- <object data="http://www.erpia.net/psm/02/html/Graph.asp?Admin_Code=YGNEXT&swm_gu=1&kind=chart7" type="text/html"></object>  -->
+
+							<!-- <iframe ng-src="http://www.erpia.net/psm/02/html/Graph.asp?Admin_Code=YGNEXT&swm_gu=1&kind=chart7" style="width: 100%; height: 100%"></iframe> -->
+						<!-- </div> -->
+					</ion-content>
+				</ion-slide>
+				
+				<ion-slide>
+					<ion-content overflow-scroll="true">
+					<p ng-bind-html="login_alert"></p>
+						<div style="height: 100%;">
+							<!-- <iframe src="{{url}}" ng-style="myStyle"></iframe> -->
+
+							<!-- <iframe src="http://www.erpia.net/psm/02/html/Graph.asp?Admin_Code=YGNEXT&swm_gu=1&kind=chart2"   frameborder=0 marginwidth=0 marginheight=0 scrolling=no align="left" ng-style="myStyle"></iframe> -->
+						</div>
+					</ion-content>
+				</ion-slide>
+
+				<ion-slide>
+					<ion-content overflow-scroll="true">
+					<p ng-bind-html="login_alert"></p>
+						<div style="height: 100%;">
+							<!-- <iframe src="{{url}}" ng-style="myStyle"></iframe> -->
+
+							<!-- <iframe src="http://www.erpia.net/psm/02/html/Graph.asp?Admin_Code=YGNEXT&swm_gu=1&kind=chart6"   frameborder=0 marginwidth=0 marginheight=0 scrolling=no align="left" ng-style="myStyle"></iframe> -->
+						</div>
+					</ion-content>
+				</ion-slide>
+
+				<ion-slide>
+					<ion-content overflow-scroll="true">
+					<p ng-bind-html="login_alert"></p>
+						<div style="height: 100%;">
+							<!-- <iframe src="{{url}}" ng-style="myStyle"></iframe> -->
+
+							<!-- <iframe src="http://www.erpia.net/psm/02/html/Graph.asp?Admin_Code=YGNEXT&swm_gu=1&kind=chart4"   frameborder=0 marginwidth=0 marginheight=0 scrolling=no align="left" ng-style="myStyle"></iframe> -->
+						</div>
+					</ion-content>
+				</ion-slide>
+
+				<ion-slide>
+					<ion-content overflow-scroll="true">
+					<p ng-bind-html="login_alert"></p>
+						<div style="height: 100%;">
+							<!-- <iframe src="{{url}}" ng-style="myStyle"></iframe> -->
+
+							<!-- <iframe src="http://www.erpia.net/psm/02/html/Graph.asp?Admin_Code=YGNEXT&swm_gu=1&kind=chart3"   frameborder=0 marginwidth=0 marginheight=0 scrolling=no align="left" ng-style="myStyle"></iframe> -->
+						</div>
+					</ion-content>
+				</ion-slide>
+
+				<ion-slide>
+					<ion-content overflow-scroll="true">
+					<p ng-bind-html="login_alert"></p>
+						<div style="height: 100%;">
+							<!-- <iframe src="{{url}}" ng-style="myStyle"></iframe> -->
+
+							<!-- <iframe src="http://www.erpia.net/psm/02/html/Graph.asp?Admin_Code=YGNEXT&swm_gu=1&kind=chart11"   frameborder=0 marginwidth=0 marginheight=0 scrolling=no align="left" ng-style="myStyle"></iframe> -->
+						</div>
+					</ion-content>
+				</ion-slide>
+
+				<ion-slide>
+					<ion-content overflow-scroll="true">
+					<p ng-bind-html="login_alert"></p>
+						<div style="height: 100%;">
+							<!-- <iframe src="{{url}}" ng-style="myStyle"></iframe> -->
+
+							<!-- <iframe src="http://www.erpia.net/psm/02/html/Graph.asp?Admin_Code=YGNEXT&swm_gu=1&kind=chart12"   frameborder=0 marginwidth=0 marginheight=0 scrolling=no align="left" ng-style="myStyle"></iframe> -->
+						</div>
+					</ion-content>
+				</ion-slide>
+
+				<ion-slide>
+					<ion-content overflow-scroll="true">
+					<p ng-bind-html="login_alert"></p>
+						<div style="height: 100%;">
+							<!-- <iframe src="{{url}}" ng-style="myStyle"></iframe> -->
+
+							<!-- <iframe src="http://www.erpia.net/psm/02/html/Graph.asp?Admin_Code=YGNEXT&swm_gu=1&kind=chart13"   frameborder=0 marginwidth=0 marginheight=0 scrolling=no align="left" ng-style="myStyle"></iframe> -->
+						</div>
+					</ion-content>
+				</ion-slide>
+
+				<ion-slide>
+					<ion-content overflow-scroll="true">
+					<p ng-bind-html="login_alert"></p>
+						<div style="height: 100%;">
+							<!-- <iframe src="{{url}}" ng-style="myStyle"></iframe> -->
+
+							<!-- <iframe src="http://www.erpia.net/psm/02/html/Graph.asp?Admin_Code=YGNEXT&swm_gu=1&kind=chart14"   frameborder=0 marginwidth=0 marginheight=0 scrolling=no align="left" ng-style="myStyle"></iframe> -->
+						</div>
+					</ion-content>
+				</ion-slide>
+
+				<ion-slide>
+					<ion-content overflow-scroll="true">
+					<p ng-bind-html="login_alert"></p>
+						<div style="height: 100%;">
+							<!-- <iframe src="{{url}}" ng-style="myStyle"></iframe> -->
+
+							<!-- <iframe src="http://www.erpia.net/psm/02/html/Graph.asp?Admin_Code=YGNEXT&swm_gu=1&kind=chart8"   frameborder=0 marginwidth=0 marginheight=0 scrolling=no align="left" ng-style="myStyle"></iframe> -->
+						</div>
+					</ion-content>
+				</ion-slide>
+
+				<ion-slide>
+					<ion-content overflow-scroll="true">
+					<p ng-bind-html="login_alert"></p>
+						<div style="height: 100%;">
+							<!-- <iframe src="{{url}}" ng-style="myStyle"></iframe> -->
+
+							<!-- <iframe src="http://www.erpia.net/psm/02/html/Graph.asp?Admin_Code=YGNEXT&swm_gu=1&kind=chart1"   frameborder=0 marginwidth=0 marginheight=0 scrolling=no align="left" ng-style="myStyle"></iframe> -->
+						</div>
+					</ion-content>
+				</ion-slide>
+
+				<ion-slide>
+					<ion-content overflow-scroll="true">
+					<p ng-bind-html="login_alert"></p>
+						<div style="height: 100%;">
+							<!-- <iframe src="{{url}}" ng-style="myStyle"></iframe> -->
+
+							<!-- <iframe src="http://www.erpia.net/psm/02/html/Graph.asp?Admin_Code=YGNEXT&swm_gu=1&kind=chart15"   frameborder=0 marginwidth=0 marginheight=0 scrolling=no align="left" ng-style="myStyle"></iframe> -->
+						</div>
+					</ion-content>
+				</ion-slide>
+
+				<ion-slide>
+					<ion-content overflow-scroll="true">
+					<p ng-bind-html="login_alert"></p>
+						<div style="height: 100%;">
+							<!-- <iframe src="{{url}}" ng-style="myStyle"></iframe> -->
+
+							<!-- <iframe src="http://www.erpia.net/psm/02/html/Graph.asp?Admin_Code=YGNEXT&swm_gu=1&kind=chart9"   frameborder=0 marginwidth=0 marginheight=0 scrolling=no align="left" ng-style="myStyle"></iframe> -->
+						</div>
+					</ion-content>
+				</ion-slide>
+
+				<ion-slide>
+					<ion-content overflow-scroll="true">
+					<p ng-bind-html="login_alert"></p>
+						<div style="height: 100%;">
+							<!-- <iframe src="{{url}}" ng-style="myStyle"></iframe> -->
+
+							<!-- <iframe src="http://www.erpia.net/psm/02/html/Graph.asp?Admin_Code=YGNEXT&swm_gu=1&kind=chart17"   frameborder=0 marginwidth=0 marginheight=0 scrolling=no align="left" ng-style="myStyle"></iframe> -->
+						</div>
+					</ion-content>
+				</ion-slide>
+
+				<ion-slide>
+					<ion-content overflow-scroll="true">
+					<p ng-bind-html="login_alert"></p>
+						<div style="height: 100%;">
+							<!-- <iframe src="{{url}}" ng-style="myStyle"></iframe> -->
+
+							<!-- <iframe src="http://www.erpia.net/psm/02/html/Graph.asp?Admin_Code=YGNEXT&swm_gu=1&kind=chart10"   frameborder=0 marginwidth=0 marginheight=0 scrolling=no align="left" ng-style="myStyle"></iframe> -->
+						</div>
+					</ion-content>
+				</ion-slide>
+
+				<ion-slide>
+					<ion-content overflow-scroll="true">
+					<p ng-bind-html="login_alert"></p>
+						<div style="height: 100%;">
+							<!-- <iframe src="{{url}}" ng-style="myStyle"></iframe> -->
+
+							<!-- <iframe src="http://www.erpia.net/psm/02/html/Graph.asp?Admin_Code=YGNEXT&swm_gu=1&kind=chart16"   frameborder=0 marginwidth=0 marginheight=0 scrolling=no align="left" ng-style="myStyle"></iframe> -->
+						</div>
+					</ion-content>
+				</ion-slide>
+			</ion-slide-box>
+		</tab-slide-box>
+	</ion-content>
+</ion-view>

@@ -1,0 +1,154 @@
+<ion-view view-title="Board Main" ng-controller="BoardMainCtrl">
+	<ion-content scroll="false">
+		<tab-slide-box>
+			<div class="tsb-icons">
+				<div class="tsb-ic-wrp">
+					<ion-scroll direction="x" class="tsb-hscroll">
+						<a href="javascript:;" class="{{tab.icon}}" ng-repeat="tab in tabs2" on-finish-render="test()">{{tab.text}}</a>
+					</ion-scroll>
+				</div>
+			</div>
+
+			<ion-slide-box does-continue="true" show-pager="false" on-slide-changed="slideHasChanged($index)">
+				<ion-slide>
+					<ion-content  overflow-scroll="true" > 
+						<div style="height: 100%;"> 
+							<!-- <iframe src="#/erpia_erpiahome/erpiahome" frameborder=0 marginwidth=0 marginheight=0 scrolling=no align="left" ng-style="myStyle"></iframe> -->
+							<div class="card">
+								<div class="item item-divider">
+									[필독] ERPia 서버 점검으로 인한 서비스 일시중지 안내입니다.
+								</div>
+								<div class="item item-text-wrap">
+								[필독] ERPia 서버 점검으로 인한 서비스 일시중지 안내입니다.<br>
+
+									안녕하세요.
+									이알피아 고객지원센터입니다.<br>
+
+									<br>이알피아(ERPia) 서비스를 이용해 주시는 많은 고객 여러분께 진심으로 감사드립니다.<br>
+									
+									<br>ERPia를 이용하시는 고객 여러분께 보다 원활한 서비스를 지원해 드리기 위해 
+									서버 안정화 및 업데이트 작업을 진행 할 예정입니다.<br>
+
+									<br>해당작업은 고객님께 보다 안정적이고 양질의 서비스를 제공하기 위한 
+									불가피한 작업이오니 고객님의 양해 부탁드립니다.<br>
+
+									<br><작업안내>
+									- 목적 : 서버 안정화 및 업데이트
+									- 일시 : 2015.09.25 a.m 00:00 ~ 2015.09.25 a.m 06:00
+									- 대상 : ERPia 온오프통합관리(Alchemist,Enterprise,Professional,유통,도소매), ERPia POS<br>
+
+									<br>언제나 고객서비스를 위해 최선을 다하는 이알피아(ERPia)가 되겠습니다.
+
+									감사합니다
+								</div>
+								<div class="item item-divider">
+									[공지] ERPia 모듈별_PRO 기본 교육 안내입니다.
+								</div>
+							</div>
+						</div>
+					</ion-content>
+				</ion-slide>
+
+				<ion-slide>
+					<ion-content overflow-scroll="true">
+					<p ng-bind-html="login_alert"></p>
+						<div style="height: 100%;">
+							<!-- <iframe src="{{url}}" ng-style="myStyle"></iframe> -->
+							<div class="card">
+								<div class="item item-divider">
+									옥션 엑셀파일
+								</div>
+								<div class="item item-text-wrap">
+									엑셀파일 첨부합니다.<br>
+									확인부탁드려요 
+								</div>
+								<div class="item item-divider">
+									사이트 추가
+								</div>
+							</div>
+						</div>
+					</ion-content>
+				</ion-slide>
+				
+				<ion-slide>
+					<ion-content overflow-scroll="true">
+					<p ng-bind-html="login_alert"></p>
+						<div style="height: 100%;">
+							<!-- <iframe src="{{url}}" ng-style="myStyle"></iframe> -->
+							<div class="card">
+								<div class="item item-divider">
+									[업데이트]온-오프통합관리 (2015-09-17)
+								</div>
+								<div class="item item-text-wrap">
+								[업데이트]온-오프통합관리 (2015-09-17)<br>
+
+								<br>안녕하세요!
+								ERPia 고객지원센터 입니다.<br>
+
+								<br>2015년 09월 17일 이알피아(ERPia) 온-오프통합관리 시스템 업데이트 내역을 알려드리겠습니다.
+								(고객사별로 오픈 된 기능에 한해서 업데이트 내역확인이 가능합니다.)<br>
+
+
+
+								<br>[기초관리> 거래처등록]거래처 등록 상단 조회조건 "거래처 담당자 전화번호"추가<br>
+
+
+								기초관리> 거래처등록
+
+
+								<br>ㅡ>거래처 조회시 거래처 담당자의 전화번호로 거래처 조회 가능합니다.<br>
+
+
+
+								<br>(*고객사별로 오픈 된 기능에 한해서 업데이트 내역확인이 가능합니다.)<br>
+
+								<br>ERPia를 이용해 주셔서 감사드리며 
+								언제나 고객님의 불편을 빠르고 친절하게 해결하고자 노력하는 이알피아(ERPia) 되겠습니다.<br>
+
+								<br>감사합니다.
+
+								</div>
+								<div class="item item-divider">
+									[업데이트]온-오프통합관리 (2015-09-10)
+								</div>
+							</div>
+						</div>
+					</ion-content>
+				</ion-slide>
+
+				<ion-slide>
+					<ion-content overflow-scroll="true">
+					<p ng-bind-html="login_alert"></p>
+						<div style="height: 100%;">
+							<!-- <iframe src="{{url}}" ng-style="myStyle"></iframe> -->
+
+							<!-- <iframe src="{{url2}}"   frameborder=0 marginwidth=0 marginheight=0 scrolling=no align="left" ng-style="myStyle"></iframe> -->
+							<div class="card">
+								<div class="item item-divider">
+									조회조건에 없는 문구로 쉽게 조회 할 수는 없나요?
+								</div>
+								<div class="item item-text-wrap">
+								조회조건에 없는 문구로 쉽게 조회 할 수는 없나요?<br>
+
+								<br>안녕하세요<br>
+								이알피아 고객지원센터입니다.
+
+								<br>[Ctrl + F]키를 눌러주시면 보다 간편하게 조회해주실수 있는 조회창이 노출됩니다.<br>
+
+
+
+
+
+								감사합니다. 
+								</div>
+								<div class="item item-divider">
+									매출처리 제외한 주문건들 확인 할 수 있나요?
+								</div>
+							</div>
+						</div>
+					</ion-content>
+				</ion-slide>
+			</ion-slide-box>
+		</tab-slide-box>
+	</ion-content>
+</ion-view>
