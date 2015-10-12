@@ -3,12 +3,18 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic','ionic.service.core','ionic.service.push', 'starter.controllers', 'tabSlideBox' ,'ngCordova'])
+angular.module('starter', ['ionic','ionic.service.core','ionic.service.push', 'starter.controllers', 'tabSlideBox' ,'ngCordova', 'starter.services'])
 
+// .constant('ERPiaAPI',{
+// 	url:'http://localhost:8100/include'
+// })
+// 실제 사용시
+.constant('ERPiaAPI',{
+	url:'http://www.erpia.net/include'
+})
 .run(function($ionicPlatform) {
 	$ionicPlatform.ready(function() {
-		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-		// for form inputs)
+		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard for form inputs) 
 		if (window.cordova && window.cordova.plugins.Keyboard) {
 			cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 		}
@@ -237,17 +243,4 @@ angular.module('starter', ['ionic','ionic.service.core','ionic.service.push', 's
 	// if none of the above states are matched, use this as the fallback
 	$urlRouterProvider.otherwise('/app/main');
 }); 
-// 2015-10-05 이호경 추가
-// angular.module('starter.service', [])
-// .factory('xmlParser', function () {
-// 	var x2js = new X2JS();
-// 	return {
-// 		xml2json: x2js.xml2json,
-// 		xml_str2json_withOutBind : x2js.xml_str2json,
-// 		xml_str2json: function (args) {
-// 			return angular.bind(x2js, x2js.xml_str2json, args)();
-// 		},
-// 		json2xml: x2js.json2xml_str
-// 	}
-// })
 

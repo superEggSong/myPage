@@ -1,4 +1,36 @@
-angular.module('starter.services', []).factory('Chats', function() {
+angular.module('starter.services', [])
+
+// .factory('Api', function($http, $q, ERPiaAPI){
+// 	console.log('ERPiaAPI', ERPiaAPI);
+// 	var getApiData = function() {
+// 	    return $http.get(ERPiaAPI.url)
+// 	      .then(function(data) {
+// 	        console.log('Got some data: ', data);
+// 	        return data;
+// 	    });
+// 	};
+// 	return {
+// 		getApiData: getApiData;
+// 	}
+// })
+.factory('loginService', function($http, ERPiaAPI){
+	var comInfo = function(kind, Admin_Code, G_id, G_Pass){
+		if(kind == 'scm_login'){
+			var url = ERPiaAPI.url + '/Json_Proc_MyPage_Scm.asp';
+			var data = 'kind=' + kind + '&Admin_Code=' + Admin_Code + '&G_id=' + G_id + '&G_Pass=' + G_Pass;
+			return $http.get(url + '?' + data);
+		}else if(kind == 'ERPiaLogin'){
+			var url = ERPiaAPI.url + '/JSon_Proc_MyPage_Scm_Manage.asp';
+			var data = 'kind=' + kind + '&Admin_Code=' + Admin_Code + '&uid=' + G_id + '&pwd=' + G_Pass;
+			return $http.get(url + '?' + data);
+		}
+	}
+	return{
+		comInfo: comInfo
+	}
+})
+
+.factory('Chats', function() {
 	// Might use a resource here that returns a JSON array
 
 	// Some fake testing data

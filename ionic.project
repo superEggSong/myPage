@@ -4,7 +4,7 @@
   "proxies":[
     {
       "path":"/include",
-      "proxyUrl":"https://www.erpia.net/include"
+      "proxyUrl":"http://www.erpia.net/include"
     }
   ]
 }

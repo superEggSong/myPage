@@ -9,7 +9,9 @@
     </author>
   <content src="index.html"/>
   <access origin="tel:*" launch-external="yes" />
+  <access origin="http://www.erpia.net" />
   <allow-intent href="tel:*" />
+  <allow-intent href="*://*www.erpia.net/*" />
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
