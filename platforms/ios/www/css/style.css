@@ -1,0 +1,11 @@
+/* Empty. Add your own CSS if you like */
+.slider-slide h3 {
+	color: #0398dc;
+}
+.scroll {
+	height: 100%;
+}
+
+.tabbed-slidebox .tsb-icons:after {
+	display: none;
+}

@@ -168,10 +168,21 @@ angular.module('starter.controllers', ['starter.services'])
 							$scope.closeLogin();
 						}, 100);
 					}
+<<<<<<< HEAD
+					$timeout(function() {
+						$scope.closeLogin();
+					}, 100);
+				})
+				.error(function(data, status, headers, config){
+					console.log(data);
+					alert(data);
+				})
+=======
 				},
 				function(){
 					alert('로그인실패')
 				});
+>>>>>>> master
 			}else{
 				//ERPia 로그인
 				loginService.comInfo('ERPiaLogin', $scope.Admin_Code, $scope.G_id, $scope.G_Pass)
