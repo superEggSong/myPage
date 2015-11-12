@@ -18,11 +18,11 @@ var g_playlists = [{
 	id : 6
 }];
 
-var ERPiaAPI = 'http://localhost:8100/include';
+//var ERPiaAPI = 'http://localhost:8100/include';
 angular.module('starter.controllers', ['starter.services'])
-.constant('ERPiaAPI', {
-	url:'https://www.erpia.net/include'
-})
+// .constant('ERPiaAPI', {
+// 	url:'https://www.erpia.net/include'
+// })
 
 // .controller('PushCtrl', function($scope, $rootScope, $ionicUser, $ionicPush) {
 // 	$rootScope.$on('$cordovaPush:tokenReceived', function(event, data) {
@@ -69,8 +69,7 @@ angular.module('starter.controllers', ['starter.services'])
 // 	};
 // })
 
-.controller('AppCtrl', function($rootScope, $scope, $ionicModal, $timeout, $stateParams, $location, $http, $state){
-	console.log("load");
+.controller('AppCtrl', function($rootScope, $scope, $ionicModal, $timeout, $stateParams, $location, $http, $state, loginService){
 	$rootScope.urlData = [];
 	$rootScope.loginState = "R"; //R: READY, E: ERPIA LOGIN TRUE, S: SCM LOGIN TRUE
 	console.log($rootScope.loginState);
@@ -98,7 +97,6 @@ angular.module('starter.controllers', ['starter.services'])
 	
 	// Form data for the login modal
 	$scope.loginData = {};
-	$scope.comData = {};
 
 	// Create the login modal that we will use later
 	$ionicModal.fromTemplateUrl('erpia_login/login.html', {
@@ -145,10 +143,8 @@ angular.module('starter.controllers', ['starter.services'])
 			location.href="#/app/menu";
 		};
 	};
-
 	// Perform the login action when the user submits the login form
 	$scope.doLogin = function() {
-		 
 		$scope.Kind = "scm_login";
 		$scope.Admin_Code = $scope.loginData.Admin_Code;
 		$scope.G_id = $scope.loginData.UserId;
@@ -159,25 +155,20 @@ angular.module('starter.controllers', ['starter.services'])
 		if ($scope.Auto_Login != true) {
 			//SCM 로그인
 			if ($scope.SCM_Use_YN == true) {
-				//var url = ERPiaAPI + '/Json_Proc_MyPage_Scm.asp';
-				var url = "http://www.erpia.net/include/Json_Proc_MyPage_Scm.asp?callback=JSON_CALLBACK&kind=scm_login&Admin_Code=" + $scope.Admin_Code + "&G_id=" + $scope.G_id + "&G_Pass=" + $scope.G_Pass;
-				var data = "kind=scm_login&Admin_Code=" + $scope.Admin_Code + "&G_id=" + $scope.G_id + "&G_Pass=" + $scope.G_Pass;
-				$http.jsonp(url)
-				// $http.jsonp({
-				// 	method: 'POST',
-				// 	url: url,
-				// 	data: data,
-				// 	headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'} //헤더
-				// })
-				.success(function(data, status, headers, config){
-					var json = JSON.parse(data.return);
-					if(json.list[0].ResultCk == "1"){
-						$scope.Admin_Code = json.list[0].Admin_Code;
-						$scope.GerName = json.list[0].GerName + '<br>(' + json.list[0].G_Code + ')';
-						$scope.G_id = json.list[0].G_ID;
+				loginService.comInfo('scm_login', $scope.Admin_Code, $scope.G_id, $scope.G_Pass)
+				.then(function(comInfo){
+					if (comInfo.data.list.length > 0){
+						$scope.Admin_Code = comInfo.data.list[0].Admin_Code;
+						$scope.GerName = comInfo.data.list[0].GerName + '<br>(' + comInfo.data.list[0].G_Code + ')';
+						$scope.G_id = comInfo.data.list[0].G_ID;
 						$scope.loginHTML = "로그아웃";
 						$rootScope.loginState = "S";
+
+						$timeout(function() {
+							$scope.closeLogin();
+						}, 100);
 					}
+<<<<<<< HEAD
 					$timeout(function() {
 						$scope.closeLogin();
 					}, 100);
@@ -186,131 +177,157 @@ angular.module('starter.controllers', ['starter.services'])
 					console.log(data);
 					alert(data);
 				})
+=======
+				},
+				function(){
+					alert('로그인실패')
+				});
+>>>>>>> master
 			}else{
 				//ERPia 로그인
-				var url = ERPiaAPI + '/JSon_Proc_MyPage_Scm_Manage.asp';
-				var data = "kind=ERPiaLogin&Admin_Code=" + $scope.Admin_Code + "&uid=" + $scope.G_id + "&pwd=" + $scope.G_Pass;
-				var CNT_Tax_No_Read = '', G_Expire_Date = '', G_Expire_Days = '';
-				$http({
-					method: 'POST',
-					url: url,
-					data: data,
-					headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'} //헤더
-				})
-				  	.success(function(data, status, headers, config){
-					if(data.list[0].Com_Code != ''){
-						$scope.Com_Name = data.list[0].Com_Name + '<br>(' + data.list[0].Com_Code + ')';
-						$scope.UserId = data.list[0].user_id;
-						$scope.loginHTML = "로그아웃<br>(" + data.list[0].Com_Code + ")";
-						$scope.package = data.list[0].Pack_Name;
-						$scope.cnt_site = data.list[0].CNT_Site + " 개";
+				loginService.comInfo('ERPiaLogin', $scope.Admin_Code, $scope.G_id, $scope.G_Pass)
+				.then(function(comInfo){
+					if (comInfo.data.list.length > 0){
+						console.log('comInfo', comInfo);
+						$scope.Com_Name = comInfo.data.list[0].Com_Name + '<br>(' + comInfo.data.list[0].Com_Code + ')';
+						$scope.UserId = comInfo.data.list[0].user_id;
+						$scope.package = comInfo.data.list[0].Pack_Name;
+						$scope.cnt_site = comInfo.data.list[0].CNT_Site + " 개";
+						$scope.loginHTML = "로그아웃<br>(" + comInfo.data.list[0].Com_Code + ")";
+						$rootScope.loginState = "E";
 
-						url = ERPiaAPI + '/JSon_Proc_MyPage_Scm_Manage.asp';
-						var data = "kind=erpia_ComInfo&Admin_Code=" + data.list[0].Com_Code;
-						$http({
-							method: 'POST',
-							url: url,
-							data: data,
-							headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'} //헤더
-						})
-						.success(function(data){
-							var d= new Date();
-							var month = d.getMonth() + 1;
-							var day = d.getDate();
-
-							CNT_Tax_No_Read = data.list[0].CNT_Tax_No_Read;	//계산서 미수신건
-							Pay_Method = data.list[0].Pay_Method;
-							Pay_State = data.list[0].Pay_State;
-							Max_Pay_YM = data.list[0].Max_Pay_YM;
-							Pay_Ex_Days = data.list[0].Pay_Ex_Days;
-							Pay_Day = data.list[0].Pay_Day;
-							Pay_Ex_Date = d.getFullYear() + '-' + (month<10 ? '0':'') + month + '-' + (day<10 ? '0' : '') + day;
-
-							$scope.CNT_Tax_No_Read = CNT_Tax_No_Read + " 건";
-							
-							if (Pay_Method != 'P')
-							{
-								if (Pay_State == 'Y')	//당월결재존재
-								{
-									if (Max_Pay_YM != '')
-									{
-										if (Pay_Ex_Days >= 0)
-										{
-											//G_Expire_Days = DateDiff("D", Now_Date, DateAdd("M", 1, Max_Pay_YM & "-01")) + CInt(Pay_Day) + CInt(Pay_Ex_Days) - 1
-											Max_Pay_Y = Max_Pay_YM.split('-')[0];
-											Max_Pay_M = Max_Pay_YM.split('-')[1];
-											var d1 = new Date(Max_Pay_Y, Max_Pay_M, Pay_Day);
-											var diffD = d1 - d;
-											G_Expire_Date = d1.format("yyyy.MM.dd");
-											G_Expire_Days = Math.ceil(diffD/(24*3600*1000));
-										}else{
-											G_Expire_Days = '?';
-											G_Expire_Date = '?';
-										}
-									}
-								}else{
-									if (Pay_Ex_Days < 0)		//당월결재미존재, 초과허용무제한
-									{
-										G_Expire_Days = '?';
-										G_Expire_Date = '?';
-									}else{
-										if (Last_Pay_YM == '')	//당월결재미존재, 이전결재내역미존재
-										{
-											G_Expire_Days = "0";
-											G_Expire_Date = "기간만료";
-										}else{					//당월결재미존재, 이전결재내역존재
-											Max_Pay_Y = Max_Pay_YM.split('-')[0];
-											Max_Pay_M = Max_Pay_YM.split('-')[1];
-											if (new Date(Max_Pay_Y, Max_Pay_M, Pay_Day) < d)
-											{
-												G_Expire_Days = "0"
-												G_Expire_Date = "기간만료"
-											}else{
-												//G_Expire_Days = DateDiff("D", Now_Date, DateAdd("D", CInt(Pay_Day) + CInt(Pay_Ex_Days) - 1, DateAdd("M", 1, Last_Pay_YM & "-01")))
-												//G_Expire_Date = DateAdd("D", CInt(Pay_Day) + CInt(Pay_Ex_Days) - 1, DateAdd("M", 1, Last_Pay_YM & "-01"))
-											}
-										}
-									}
-								}
-							}else{
-								G_Expire_Days = "?"
-								if (CLng(IO_Amt) + CLng(Point_Ex_Amt) - CLng(Point_Out_StandBy_Amt) <= 0)
-								{
-									G_Expire_Date = "포인트부족"
-								}else{
-									G_Expire_Date = CLng(IO_Amt) + CLng(Point_Ex_Amt) - CLng(Point_Out_StandBy_Amt)
-								}
-							}
-
-							$scope.management_day = G_Expire_Date; //"2015년<br>8월20일";
-							$scope.management_bill = "330,000원	<br><small>(VAT 포함)</small>";
-							$scope.sms = "15000 개<br><small>(건당 19원)</small>";
-							$scope.tax = "150 개<br><small>(건당 165원)</small>";
-							$scope.e_money = "30,000원<br><small>(자동이체 사용중)</small>";
-							$scope.every = "10,000 P";
-							$scope.cnt_user = "5 명";
-							$scope.cnt_account = "20 개";
-
-							$rootScope.loginState = "E";
-
-							$timeout(function() {
-								$rootScope.ComInfo = {
-									"G_Expire_Date":G_Expire_Date
-									, "G_Expire_Days":G_Expire_Days
-									, "CNT_Tax_No_Read":CNT_Tax_No_Read
-								};
-								$scope.closeLogin();
-							}, 100);
-						})
-						.error(function(data){
-						})
-						
+						$timeout(function() {
+							$scope.closeLogin();
+						}, 100);
 					}
+				},
+				function(){
+					alert('로그인실패')
+				});
+
+				// var url = ERPiaAPI + '/JSon_Proc_MyPage_Scm_Manage.asp';
+				// var data = "kind=ERPiaLogin&Admin_Code=" + $scope.Admin_Code + "&uid=" + $scope.G_id + "&pwd=" + $scope.G_Pass;
+				// var CNT_Tax_No_Read = '', G_Expire_Date = '', G_Expire_Days = '';
+				// $http({
+				// 	method: 'POST',
+				// 	url: url,
+				// 	data: data,
+				// 	headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'} //헤더
+				// })
+				//   	.success(function(data, status, headers, config){
+				// 	if(data.list[0].Com_Code != ''){
+				// 		$scope.Com_Name = data.list[0].Com_Name + '<br>(' + data.list[0].Com_Code + ')';
+				// 		$scope.UserId = data.list[0].user_id;
+				// 		$scope.loginHTML = "로그아웃<br>(" + data.list[0].Com_Code + ")";
+				// 		$scope.package = data.list[0].Pack_Name;
+				// 		$scope.cnt_site = data.list[0].CNT_Site + " 개";
+
+				// 		url = ERPiaAPI + '/JSon_Proc_MyPage_Scm_Manage.asp';
+				// 		var data = "kind=erpia_ComInfo&Admin_Code=" + data.list[0].Com_Code;
+				// 		$http({
+				// 			method: 'POST',
+				// 			url: url,
+				// 			data: data,
+				// 			headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'} //헤더
+				// 		})
+				// 		.success(function(data){
+				// 			var d= new Date();
+				// 			var month = d.getMonth() + 1;
+				// 			var day = d.getDate();
+
+				// 			CNT_Tax_No_Read = data.list[0].CNT_Tax_No_Read;	//계산서 미수신건
+				// 			Pay_Method = data.list[0].Pay_Method;
+				// 			Pay_State = data.list[0].Pay_State;
+				// 			Max_Pay_YM = data.list[0].Max_Pay_YM;
+				// 			Pay_Ex_Days = data.list[0].Pay_Ex_Days;
+				// 			Pay_Day = data.list[0].Pay_Day;
+				// 			Pay_Ex_Date = d.getFullYear() + '-' + (month<10 ? '0':'') + month + '-' + (day<10 ? '0' : '') + day;
+
+				// 			$scope.CNT_Tax_No_Read = CNT_Tax_No_Read + " 건";
+							
+				// 			if (Pay_Method != 'P')
+				// 			{
+				// 				if (Pay_State == 'Y')	//당월결재존재
+				// 				{
+				// 					if (Max_Pay_YM != '')
+				// 					{
+				// 						if (Pay_Ex_Days >= 0)
+				// 						{
+				// 							//G_Expire_Days = DateDiff("D", Now_Date, DateAdd("M", 1, Max_Pay_YM & "-01")) + CInt(Pay_Day) + CInt(Pay_Ex_Days) - 1
+				// 							Max_Pay_Y = Max_Pay_YM.split('-')[0];
+				// 							Max_Pay_M = Max_Pay_YM.split('-')[1];
+				// 							var d1 = new Date(Max_Pay_Y, Max_Pay_M, Pay_Day);
+				// 							var diffD = d1 - d;
+				// 							G_Expire_Date = d1.format("yyyy.MM.dd");
+				// 							G_Expire_Days = Math.ceil(diffD/(24*3600*1000));
+				// 						}else{
+				// 							G_Expire_Days = '?';
+				// 							G_Expire_Date = '?';
+				// 						}
+				// 					}
+				// 				}else{
+				// 					if (Pay_Ex_Days < 0)		//당월결재미존재, 초과허용무제한
+				// 					{
+				// 						G_Expire_Days = '?';
+				// 						G_Expire_Date = '?';
+				// 					}else{
+				// 						if (Last_Pay_YM == '')	//당월결재미존재, 이전결재내역미존재
+				// 						{
+				// 							G_Expire_Days = "0";
+				// 							G_Expire_Date = "기간만료";
+				// 						}else{					//당월결재미존재, 이전결재내역존재
+				// 							Max_Pay_Y = Max_Pay_YM.split('-')[0];
+				// 							Max_Pay_M = Max_Pay_YM.split('-')[1];
+				// 							if (new Date(Max_Pay_Y, Max_Pay_M, Pay_Day) < d)
+				// 							{
+				// 								G_Expire_Days = "0"
+				// 								G_Expire_Date = "기간만료"
+				// 							}else{
+				// 								//G_Expire_Days = DateDiff("D", Now_Date, DateAdd("D", CInt(Pay_Day) + CInt(Pay_Ex_Days) - 1, DateAdd("M", 1, Last_Pay_YM & "-01")))
+				// 								//G_Expire_Date = DateAdd("D", CInt(Pay_Day) + CInt(Pay_Ex_Days) - 1, DateAdd("M", 1, Last_Pay_YM & "-01"))
+				// 							}
+				// 						}
+				// 					}
+				// 				}
+				// 			}else{
+				// 				G_Expire_Days = "?"
+				// 				if (CLng(IO_Amt) + CLng(Point_Ex_Amt) - CLng(Point_Out_StandBy_Amt) <= 0)
+				// 				{
+				// 					G_Expire_Date = "포인트부족"
+				// 				}else{
+				// 					G_Expire_Date = CLng(IO_Amt) + CLng(Point_Ex_Amt) - CLng(Point_Out_StandBy_Amt)
+				// 				}
+				// 			}
+
+				// 			$scope.management_day = G_Expire_Date; //"2015년<br>8월20일";
+				// 			$scope.management_bill = "330,000원	<br><small>(VAT 포함)</small>";
+				// 			$scope.sms = "15000 개<br><small>(건당 19원)</small>";
+				// 			$scope.tax = "150 개<br><small>(건당 165원)</small>";
+				// 			$scope.e_money = "30,000원<br><small>(자동이체 사용중)</small>";
+				// 			$scope.every = "10,000 P";
+				// 			$scope.cnt_user = "5 명";
+				// 			$scope.cnt_account = "20 개";
+
+				// 			$rootScope.loginState = "E";
+
+				// 			$timeout(function() {
+				// 				$rootScope.ComInfo = {
+				// 					"G_Expire_Date":G_Expire_Date
+				// 					, "G_Expire_Days":G_Expire_Days
+				// 					, "CNT_Tax_No_Read":CNT_Tax_No_Read
+				// 				};
+				// 				$scope.closeLogin();
+				// 			}, 100);
+				// 		})
+				// 		.error(function(data){
+				// 		})
+						
+				// 	}
 					
-				})
-				  .error(function(data, status, headers, config){
-					alert('로그인 실패');
-				})
+				// })
+				//   .error(function(data, status, headers, config){
+				// 	alert('로그인 실패');
+				// })
 
 				
 
@@ -845,4 +862,8 @@ angular.module('starter.controllers', ['starter.services'])
 	$scope.settings = {
 		enableFriends : true
 	}
-});
+})
+
+.controller('LoginCtrl', function($scope){
+
+})

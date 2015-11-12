@@ -1,14 +1,18 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.ionicframework.myappframe188486" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="loglevel" value="DEBUG" />
+    <feature name="PushPlugin">
+        <param name="android-package" value="com.plugin.gcm.PushPlugin" />
+    </feature>
     <feature name="Device">
         <param name="android-package" value="org.apache.cordova.device.Device" />
     </feature>
     <feature name="Vibration">
         <param name="android-package" value="org.apache.cordova.vibration.Vibration" />
     </feature>
-    <feature name="PushPlugin">
-        <param name="android-package" value="com.plugin.gcm.PushPlugin" />
+    <feature name="Whitelist">
+        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+        <param name="onload" value="true" />
     </feature>
     <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
     <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
@@ -37,7 +41,9 @@
     </author>
     <content src="index.html" />
     <access launch-external="yes" origin="tel:*" />
+    <access origin="http://www.erpia.net" />
     <allow-intent href="tel:*" />
+    <allow-intent href="*://*www.erpia.net/*" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
@@ -45,4 +51,7 @@
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
+    <feature name="InAppBrowser">
+        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
+    </feature>
 </widget>

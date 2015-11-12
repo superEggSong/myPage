@@ -8,8 +8,15 @@
       Ionic Framework Team
     </author>
   <content src="index.html"/>
+<<<<<<< HEAD
   <access origin="tel:*" launch-external="yes"/>
   <allow-intent href="tel:*"/>
+=======
+  <access origin="tel:*" launch-external="yes" />
+  <access origin="http://www.erpia.net" />
+  <allow-intent href="tel:*" />
+  <allow-intent href="*://*www.erpia.net/*" />
+>>>>>>> master
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
@@ -40,6 +47,7 @@
     <splash src="resources/android/splash/drawable-port-xxhdpi-screen.png" density="port-xxhdpi"/>
     <splash src="resources/android/splash/drawable-port-xxxhdpi-screen.png" density="port-xxxhdpi"/>
   </platform>
+<<<<<<< HEAD
   <platform name="ios">
     <icon src="resources/ios/icon/icon.png" width="57" height="57"/>
     <icon src="resources/ios/icon/icon@2x.png" width="114" height="114"/>
@@ -69,3 +77,6 @@
     <splash src="resources/ios/splash/Default~iphone.png" height="480" width="320"/>
   </platform>
 </widget>
+=======
+</widget>
+>>>>>>> master

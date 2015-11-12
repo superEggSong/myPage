@@ -30,17 +30,5 @@ public class MainActivity extends CordovaActivity
         super.onCreate(savedInstanceState);
         // Set by <content src="index.html" /> in config.xml
         loadUrl(launchUrl);
-
-        // final ImageView iv = new ImageView(this);
-        // iv.setBackgroundResource(R.drawable.screen); // screen.png
- 
-        // this.addContentView(iv, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
- 
-        // new Handler().postDelayed(new Runnable() {
-        //     @Override
-        //     public void run() {
-        //       iv.setVisibility(View.GONE);
-        //     }
-        // }, 1500);
     }
 }
