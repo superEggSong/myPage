@@ -17,12 +17,7 @@ var g_playlists = [{
 	title : 'Cowbell',
 	id : 6
 }];
-// function(xml){
-// 	var x2js = nwe X2JS();
-// 	var json = x2js.xml_str2json(xml);
-// 	return json;
-// }
- 
+
 var ERPiaAPI = 'http://localhost:8100/include';
 angular.module('starter.controllers', ['starter.services'])
 .constant('ERPiaAPI', {
@@ -164,20 +159,22 @@ angular.module('starter.controllers', ['starter.services'])
 		if ($scope.Auto_Login != true) {
 			//SCM 로그인
 			if ($scope.SCM_Use_YN == true) {
-				var url = ERPiaAPI + '/Json_Proc_MyPage_Scm.asp';
+				//var url = ERPiaAPI + '/Json_Proc_MyPage_Scm.asp';
+				var url = "http://www.erpia.net/include/Json_Proc_MyPage_Scm.asp?callback=JSON_CALLBACK&kind=scm_login&Admin_Code=" + $scope.Admin_Code + "&G_id=" + $scope.G_id + "&G_Pass=" + $scope.G_Pass;
 				var data = "kind=scm_login&Admin_Code=" + $scope.Admin_Code + "&G_id=" + $scope.G_id + "&G_Pass=" + $scope.G_Pass;
-				$http({
-					method: 'POST',
-					url: url,
-					data: data,
-					headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'} //헤더
-				})
+				$http.jsonp(url)
+				// $http.jsonp({
+				// 	method: 'POST',
+				// 	url: url,
+				// 	data: data,
+				// 	headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'} //헤더
+				// })
 				.success(function(data, status, headers, config){
-					alert(data.list[0].ResultMsg);
-					if(data.list[0].ResultCk == "1"){
-						$scope.Admin_Code = data.list[0].Admin_Code;
-						$scope.GerName = data.list[0].GerName + '<br>(' + data.list[0].G_Code + ')';
-						$scope.G_id = data.list[0].G_ID;
+					var json = JSON.parse(data.return);
+					if(json.list[0].ResultCk == "1"){
+						$scope.Admin_Code = json.list[0].Admin_Code;
+						$scope.GerName = json.list[0].GerName + '<br>(' + json.list[0].G_Code + ')';
+						$scope.G_id = json.list[0].G_ID;
 						$scope.loginHTML = "로그아웃";
 						$rootScope.loginState = "S";
 					}
@@ -186,7 +183,8 @@ angular.module('starter.controllers', ['starter.services'])
 					}, 100);
 				})
 				.error(function(data, status, headers, config){
-					alert('로그인 실패');
+					console.log(data);
+					alert(data);
 				})
 			}else{
 				//ERPia 로그인

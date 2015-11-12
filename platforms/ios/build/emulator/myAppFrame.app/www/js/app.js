@@ -237,17 +237,4 @@ angular.module('starter', ['ionic','ionic.service.core','ionic.service.push', 's
 	// if none of the above states are matched, use this as the fallback
 	$urlRouterProvider.otherwise('/app/main');
 }); 
-// 2015-10-05 이호경 추가
-// angular.module('starter.service', [])
-// .factory('xmlParser', function () {
-// 	var x2js = new X2JS();
-// 	return {
-// 		xml2json: x2js.xml2json,
-// 		xml_str2json_withOutBind : x2js.xml_str2json,
-// 		xml_str2json: function (args) {
-// 			return angular.bind(x2js, x2js.xml_str2json, args)();
-// 		},
-// 		json2xml: x2js.json2xml_str
-// 	}
-// })
 

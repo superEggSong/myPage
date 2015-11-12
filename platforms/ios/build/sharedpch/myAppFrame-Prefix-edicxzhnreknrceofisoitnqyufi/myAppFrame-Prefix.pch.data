@@ -6,9 +6,9 @@ Environment  LANG=en_US.US-ASCII PATH=/Applications/Xcode.app/Contents/Developer
 BuilderIdent ProcessPCH\ /Users/ho-kyounglee/github/mypage/platforms/ios/build/sharedpch/myAppFrame-Prefix-edicxzhnreknrceofisoitnqyufi/myAppFrame-Prefix.pch.pch\ myAppFrame/myAppFrame-Prefix.pch\ normal\ i386\ objective-c\ com.apple.compilers.llvm.clang.1_0.compiler
 InputFile    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator9.0.sdk/SDKSettings.plist 0 1441390942 1592 33204
 InputFile    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator9.0.sdk/System/Library/CoreServices/SystemVersion.plist 0 1439877418 414 33188
-InputFile    /Users/ho-kyounglee/GitHub/myPage/platforms/ios/myAppFrame/myAppFrame-Prefix.pch 0 1444236174 963 33188
+InputFile    /Users/ho-kyounglee/GitHub/myPage/platforms/ios/myAppFrame/myAppFrame-Prefix.pch 0 1444283464 963 33188
 InputFile    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator9.0.sdk/SDKSettings.plist 0 1441390942 1592 33204
-InputFile    /Users/ho-kyounglee/GitHub/myPage/platforms/ios/myAppFrame/myAppFrame-Prefix.pch 0 1444236174 963 33188
+InputFile    /Users/ho-kyounglee/GitHub/myPage/platforms/ios/myAppFrame/myAppFrame-Prefix.pch 0 1444283464 963 33188
 InputFile    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator9.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h 0 1439359851 6314 33188
 InputFile    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator9.0.sdk/System/Library/Frameworks/CoreFoundation.framework/Headers/CoreFoundation.h 0 1438663866 2959 33188
 InputFile    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator9.0.sdk/usr/include/sys/types.h 0 1438924755 8057 33188

@@ -184,7 +184,7 @@ angular.module('starter.controllers', ['starter.services'])
 				})
 				.error(function(data, status, headers, config){
 					console.log(data);
-					alert('로그인 실패');
+					alert(data);
 				})
 			}else{
 				//ERPia 로그인
